@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+    int guess,number,maximum;
+    maximum = 101; //if maximum = 100 the range of the random number will be [0,99]
+    char again = 'Y';
+    while((again == 'y')||(again == 'Y')) //this loop to make the user play again if he wants
+    {
+        bool flag = true;
+        //generate a random number from 0 to 100
+        srand(time(NULL));
+        number = (rand()% maximum);
+        while (flag)
+        {
+          cout<<" -Please guess a number from 0 to 100-"<<endl;
+          cin>> guess;
+          cout<<endl;
+          if(guess > number)
+            {cout<<"--Your guess is higher than the number--"<<endl;}
+          else if(guess < number)
+            {cout<<"--Your guess is lower than the number--"<<endl;}
+          else if(guess == number){
+            cout<<"--Congratulation you guessed the number--"<<endl;
+            flag = false;}
+        }
+        cout<<"---Do you want to play again? (y/n)---"<<endl;//ask user if he wants to play again
+        cin>>again;
+        cout<<endl;
+    }
+    return 0;
+}
