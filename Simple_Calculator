@@ -1,0 +1,40 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    float num1, num2;
+    char arith_operation;
+    char again = 'y';
+    while((again == 'y')||(again == 'Y'))//this loop to make another calculation if the user wants
+    {
+        cout<<"-choose one of these arithmetic operations ( '+' , '-' , '*' , '/' )-"<<endl;
+        cin>>arith_operation;
+        cout<<"--please enter your two numbers--"<<endl<<"your first number : ";
+        cin>>num1;
+        cout<<endl<<"your second number : ";
+        cin>>num2;
+        cout<<endl;
+        if(arith_operation == '+')
+        {
+            cout<<"your result = "<< num1+num2<<endl;
+        }
+        if(arith_operation == '-')
+        {
+            cout<<"your result = "<< num1-num2<<endl;
+        }
+        if(arith_operation == '*')
+        {
+            cout<<"your result = "<< num1*num2<<endl;
+        }
+        if(arith_operation == '/')
+        {
+            cout<<"your result = "<< num1/num2<<endl;
+        }
+        cout<<"--Do yo want to make another operation? (y/n)--"<<endl;
+        cin>>again;
+        cout<<endl;
+    }
+    return 0;
+}
