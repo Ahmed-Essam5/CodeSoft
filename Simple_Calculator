@@ -30,6 +30,9 @@ int main()
         }
         if(arith_operation == '/')
         {
+            if(num2 == 0)
+                cout<<"-Error : the denominator can't be 0-"<<endl<<"---operation ignored---"<<endl;
+            else
             cout<<"your result = "<< num1/num2<<endl;
         }
         cout<<"--Do yo want to make another operation? (y/n)--"<<endl;
