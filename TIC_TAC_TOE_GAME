@@ -1,0 +1,102 @@
+#include <iostream>
+
+using namespace std;
+
+void rules()
+{
+    cout<<"--RULES--"<<endl<<"-The first player who get 3 of his marks in a row (up, down, across, or diagonally) is the winner.-"<<endl<<
+    "-when all 9 squares are full the game is over-";
+    cout<<endl<<"-You should write the number of the square (as shown) to put your mark in it-"<<endl;
+    cout<<"  -   -   -"<<endl<<"| 1 | 2 | 3 |"<<endl<<"  -   -   -"<<endl<<"| 4 | 5 | 6 |"<<endl<<"  -   -   -"<<endl<<"| 7 | 8 | 9 |"<<endl<<"  -   -   -"<<endl;
+}
+void print(char game[3][3])
+{
+    cout<<"  -   -   -"<<endl;
+    for(int i=0;i<3;i++)
+    {
+        cout<<"| ";
+        for(int j=0;j<3;j++)
+        {
+            cout<<game[i][j]<<" | ";
+        }
+        cout<<endl<<"  -   -   -"<<endl;
+    }
+}
+char input(char game[3][3],char mark)
+{
+    int square;
+    cout<<"please enter your square number [1:9] :";
+    cin>>square;
+    if(square==1)
+        if((game[0][0]!='X')&&(game[0][0]!='O')) {game[0][0]=mark;} else {cout<<"Error: this square already used write another square number"<<endl; input(game,mark);}
+    else if(square==2)
+        if((game[0][1]!='X')&&(game[0][1]!='O')) {game[0][1]=mark;} else {cout<<"Error: this square already used write another square number"<<endl; input(game,mark);}
+    else if(square==3)
+        if((game[0][2]!='X')&&(game[0][2]!='O')) {game[0][2]=mark;} else {cout<<"Error: this square already used write another square number"<<endl; input(game,mark);}
+    else if(square==4)
+        if((game[1][0]!='X')&&(game[1][0]!='O')) {game[1][0]=mark;} else {cout<<"Error: this square already used write another square number"<<endl; input(game,mark);}
+    else if(square==5)
+        if((game[1][1]!='X')&&(game[1][1]!='O')) {game[1][1]=mark;} else {cout<<"Error: this square already used write another square number"<<endl; input(game,mark);}
+    else if(square==6)
+        if((game[1][2]!='X')&&(game[1][2]!='O')) {game[1][2]=mark;} else {cout<<"Error: this square already used write another square number"<<endl; input(game,mark);}
+    else if(square==7)
+        if((game[2][0]!='X')&&(game[2][0]!='O')) {game[2][0]=mark;} else {cout<<"Error: this square already used write another square number"<<endl; input(game,mark);}
+    else if(square==8)
+        if((game[2][1]!='X')&&(game[2][1]!='O')) {game[2][1]=mark;} else {cout<<"Error: this square already used write another square number"<<endl; input(game,mark);}
+    else if(square==9)
+        if((game[2][2]!='X')&&(game[2][2]!='O')) {game[2][2]=mark;} else {cout<<"Error: this square already used write another square number"<<endl; input(game,mark);}
+}
+bool check_winner(char game[3][3],char mark)
+{
+    if(((game[0][0]==mark)&&(game[0][1]==mark)&&(game[0][2]==mark))||
+       ((game[1][0]==mark)&&(game[1][1]==mark)&&(game[1][2]==mark))||
+       ((game[2][0]==mark)&&(game[2][1]==mark)&&(game[2][2]==mark))||
+       ((game[0][0]==mark)&&(game[1][0]==mark)&&(game[2][0]==mark))||
+       ((game[0][1]==mark)&&(game[1][1]==mark)&&(game[2][1]==mark))||
+       ((game[0][2]==mark)&&(game[1][2]==mark)&&(game[2][2]==mark))||
+       ((game[0][0]==mark)&&(game[1][1]==mark)&&(game[2][2]==mark))||
+       ((game[0][2]==mark)&&(game[1][1]==mark)&&(game[2][0]==mark)))
+        return true;
+    else return false;
+}
+
+int main()
+{
+    char again='y';
+    bool winner_X= false;
+    bool winner_O= false;
+    while((again=='y')||(again=='Y'))
+          {
+              rules();
+              char game[3][3]={' '};
+              for(int i=1;i<=9;i++)
+                {
+                    if((i%2==1))
+                       {
+                           cout<<endl<<"--player 1--"<<endl;
+                           input(game,'X');
+                           print(game);
+                           winner_X=check_winner(game,'X');
+                           if(winner_X)
+                            break;
+                       }
+                    else
+                        {
+                            cout<<endl<<"--player 2--"<<endl;
+                            input(game,'O');
+                            print(game);
+                            winner_O=check_winner(game,'O');
+                            if(winner_O)
+                                break;
+                        }
+                }
+                if(winner_X)
+                    cout<<"---congratulation player 1 is the winner---";
+                else if(winner_O)
+                    cout<<"---congratulation player 2 is the winner---";
+                else cout<<"---Draw---";
+                cout<<endl<<"-Do you want to play again? (y/n)-"<<endl;
+                cin>>again;
+          }
+    return 0;
+}
