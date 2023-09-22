@@ -1,34 +1,41 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 
 using namespace std;
 
 int main()
 {
-    int guess,number,maximum;
-    maximum = 101; //if maximum = 100 the range of the random number will be [0,99]
-    char again = 'Y';
-    while((again == 'y')||(again == 'Y')) //this loop to make the user play again if he wants
+    float num1, num2;
+    char arith_operation;
+    char again = 'y';
+    while((again == 'y')||(again == 'Y'))//this loop to make another calculation if the user wants
     {
-        bool flag = true;
-        //generate a random number from 0 to 100
-        srand(time(NULL));
-        number = (rand()% maximum);
-        while (flag)
+        cout<<"-choose one of these arithmetic operations ( '+' , '-' , '*' , '/' )-"<<endl;
+        cin>>arith_operation;
+        cout<<"--please enter your two numbers--"<<endl<<"your first number : ";
+        cin>>num1;
+        cout<<endl<<"your second number : ";
+        cin>>num2;
+        cout<<endl;
+        if(arith_operation == '+')
         {
-          cout<<" -Please guess a number from 0 to 100-"<<endl;
-          cin>> guess;
-          cout<<endl;
-          if(guess > number)
-            {cout<<"--Your guess is higher than the number--"<<endl;}
-          else if(guess < number)
-            {cout<<"--Your guess is lower than the number--"<<endl;}
-          else if(guess == number){
-            cout<<"--Congratulation you guessed the number--"<<endl;
-            flag = false;}
+            cout<<"your result = "<< num1+num2<<endl;
         }
-        cout<<"---Do you want to play again? (y/n)---"<<endl;//ask user if he wants to play again
+        if(arith_operation == '-')
+        {
+            cout<<"your result = "<< num1-num2<<endl;
+        }
+        if(arith_operation == '*')
+        {
+            cout<<"your result = "<< num1*num2<<endl;
+        }
+        if(arith_operation == '/')
+        {
+            if(num2 == 0)
+                cout<<"-Error : the denominator can't be 0-"<<endl<<"---operation ignored---"<<endl;
+            else
+            cout<<"your result = "<< num1/num2<<endl;
+        }
+        cout<<"--Do yo want to make another operation? (y/n)--"<<endl;
         cin>>again;
         cout<<endl;
     }
